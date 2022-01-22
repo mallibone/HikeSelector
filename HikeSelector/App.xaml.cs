@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HikeSelector
@@ -9,8 +8,10 @@ namespace HikeSelector
         public App()
         {
             InitializeComponent();
+            Bootstrapper.CreateMapper();
+            Bootstrapper.RegisterServices();
 
-            MainPage = new MainPage();
+            MainPage = new DashboardPage();
         }
 
         protected override void OnStart()
