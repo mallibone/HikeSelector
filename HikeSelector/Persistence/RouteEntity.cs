@@ -1,5 +1,5 @@
 using System;
-using HikeSelector.Ressources;
+using HikeSelector.Resources;
 using SQLite;
 
 namespace HikeSelector.Persistence

@@ -1,4 +1,4 @@
-using HikeSelector.Ressources;
+using HikeSelector.Resources;
 using HikeSelector.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;

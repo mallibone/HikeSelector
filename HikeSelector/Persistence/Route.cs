@@ -1,5 +1,5 @@
 using HikeSelector.Persistence;
-using HikeSelector.Ressources;
+using HikeSelector.Resources;
 
 namespace HikeSelector
 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HikeSelector.Persistence;
-using HikeSelector.Ressources;
+using HikeSelector.Resources;
 using Splat;
 using SQLite;
 

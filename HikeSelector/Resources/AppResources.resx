@@ -27,4 +27,31 @@
     <data name="Switzerland" xml:space="preserve">
         <value>Schweiz</value>
     </data>
+    <data name="TTRNone" xml:space="preserve">
+        <value>Keine</value>
+    </data>
+    <data name="TTRShort" xml:space="preserve">
+        <value>Kurz</value>
+    </data>
+    <data name="TTRDayTrip" xml:space="preserve">
+        <value>Tagesausflug</value>
+    </data>
+    <data name="TTROverNight" xml:space="preserve">
+        <value>Mit Übernachtung</value>
+    </data>
+    <data name="TimeToTravel" xml:space="preserve">
+        <value>Anfahrtzeit</value>
+    </data>
+    <data name="RouteLenghtShort" xml:space="preserve">
+        <value>Kurz</value>
+    </data>
+    <data name="RouteLenghtMedium" xml:space="preserve">
+        <value>Mittel</value>
+    </data>
+    <data name="RouteLengthLong" xml:space="preserve">
+        <value>Lange</value>
+    </data>
+    <data name="RouteLength" xml:space="preserve">
+        <value>Routen Länge</value>
+    </data>
 </root>

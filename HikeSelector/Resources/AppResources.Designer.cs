@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HikeSelector.Ressources {
+namespace HikeSelector.Resources {
     using System;
     
     
@@ -28,7 +28,7 @@ namespace HikeSelector.Ressources {
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("HikeSelector.Ressources.AppResources", typeof(AppResources).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("HikeSelector.Resources.AppResources", typeof(AppResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,6 +60,60 @@ namespace HikeSelector.Ressources {
         internal static string Switzerland {
             get {
                 return ResourceManager.GetString("Switzerland", resourceCulture);
+            }
+        }
+        
+        internal static string TTRNone {
+            get {
+                return ResourceManager.GetString("TTRNone", resourceCulture);
+            }
+        }
+        
+        internal static string TTRShort {
+            get {
+                return ResourceManager.GetString("TTRShort", resourceCulture);
+            }
+        }
+        
+        internal static string TTRDayTrip {
+            get {
+                return ResourceManager.GetString("TTRDayTrip", resourceCulture);
+            }
+        }
+        
+        internal static string TTROverNight {
+            get {
+                return ResourceManager.GetString("TTROverNight", resourceCulture);
+            }
+        }
+        
+        internal static string TimeToTravel {
+            get {
+                return ResourceManager.GetString("TimeToTravel", resourceCulture);
+            }
+        }
+        
+        internal static string RouteLenghtShort {
+            get {
+                return ResourceManager.GetString("RouteLenghtShort", resourceCulture);
+            }
+        }
+        
+        internal static string RouteLenghtMedium {
+            get {
+                return ResourceManager.GetString("RouteLenghtMedium", resourceCulture);
+            }
+        }
+        
+        internal static string RouteLengthLong {
+            get {
+                return ResourceManager.GetString("RouteLengthLong", resourceCulture);
+            }
+        }
+        
+        internal static string RouteLength {
+            get {
+                return ResourceManager.GetString("RouteLength", resourceCulture);
             }
         }
     }
