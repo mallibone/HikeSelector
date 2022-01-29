@@ -1,27 +1,40 @@
-using System.IO;
-using HikeSelector.Persistence;
 using HikeSelector.Ressources;
+using HikeSelector.ViewModels;
 using ReactiveUI;
 using ReactiveUI.XamForms;
-using Xamarin.Forms;
 using Xamarin.CommunityToolkit.Markup;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
-namespace HikeSelector
+namespace HikeSelector.Views
 {
     public class DashboardPage : ReactiveContentPage<DashboardViewModel>
     {
         public DashboardPage()
         {
             On<iOS>().SetUseSafeArea(true);
-            Build();
             BindingContext = new DashboardViewModel();
+            BackgroundColor = Color.FromHex("#DBEEB4");
+            BuildNavigationBar();
+            Build();
             this.WhenActivated(_ => { });
         }
 
-        void Build() => Content = new Grid
+        private void BuildNavigationBar()
         {
+            ToolbarItems.Add(new ToolbarItem
+            {
+                Text = "Add Hike",
+                // Icon = "add.png",
+                Command = ViewModel?.ExecuteAddHike
+            });
+            
+        }
+
+        private void Build() => Content = new Grid
+        {
+            BackgroundColor = Color.FromHex("#DBEEB4"),
             Children =
             {
                 new Label()
@@ -34,14 +47,16 @@ namespace HikeSelector
                 {
                     Orientation = StackOrientation.Vertical,
                     VerticalOptions = LayoutOptions.Center,
+                    Margin = new Thickness(32),
                     Children =
                     {
-                        new RouteCardView()
+                        new Frame
                         {
-                            HorizontalOptions = LayoutOptions.Center,
-                            VerticalOptions = LayoutOptions.Center,
-                            Margin = new Thickness(0, 0, 0, 20),
-                            BindingContext = ViewModel?.SuggestedRoute,
+                            CornerRadius = 4f,
+                            HasShadow = true,
+                            BackgroundColor = Color.White,
+                            Content = new Label { TextColor = Color.Black, Text = "Static Gnabber", HorizontalOptions = LayoutOptions.Center }
+                                    .Bind(Label.TextProperty, path: nameof(ViewModel.SuggestedRoute), convert: (RouteViewModel? vm) => vm?.Name, fallbackValue: "Gnabber")
                         },
                         new Button
                             {
@@ -53,19 +68,6 @@ namespace HikeSelector
                             .Bind(Button.CommandProperty, nameof(ViewModel.ExecuteRouteSuggestion)),
                     }
                 }.Bind(IsVisibleProperty, nameof(ViewModel.HasRoutes)).Row(0)
-            }
-        };
-    }
-
-    internal class RouteCardView : ReactiveContentView<RouteViewModel>
-    {
-        void Build() => Content = new Grid
-        {
-            Children =
-            {
-                new Label { TextColor = Color.Black, Text = "Static Gnabber", HorizontalOptions = LayoutOptions.Center }
-                    .Bind(Label.TextProperty, path: nameof(ViewModel.Name),
-                        convert: (RouteEntity? sr) => sr?.Name ?? ""),
             }
         };
     }

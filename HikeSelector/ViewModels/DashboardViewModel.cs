@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Reactive.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
-using HikeSelector.Persistence;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Splat;
 
-namespace HikeSelector
+namespace HikeSelector.ViewModels
 {
     public abstract class ViewModelBase: ReactiveObject, IActivatableViewModel
     {
@@ -30,6 +29,8 @@ namespace HikeSelector
         public DashboardViewModel(Routes? routes = null, IMapper? mapper = null)
         {
             ExecuteRouteSuggestion = ReactiveCommand.CreateFromObservable(RouteSuggestion);
+            ExecuteAddHike = ReactiveCommand.CreateFromObservable(() => Observable.Return(Unit.Default));
+            
             _routes = routes ?? Locator.Current.GetService<Routes>() ?? throw new ArgumentNullException();
             _mapper = mapper ?? Locator.Current.GetService<IMapper>() ?? throw new ArgumentNullException();
 
@@ -49,19 +50,11 @@ namespace HikeSelector
         [Reactive] public RouteViewModel SuggestedRoute { get; set; } = new() {Name = "Gnabber"};
         public string SuggestedRouteName { [ObservableAsProperty] get; } = string.Empty;
         [Reactive] public bool HasRoutes { get; set; }
+        public ICommand ExecuteAddHike { get; set; }
 
         private IObservable<IEnumerable<RouteViewModel>> RouteSuggestion() =>
             Observable.StartAsync(_routes.Get)
                 .Select(r => r.Select(_mapper.Map<RouteViewModel>).OrderBy(_ => Guid.NewGuid()))
                 .Do(r => SuggestedRoute = r.First());
-    }
-
-    public class RouteViewModel : ViewModelBase
-    {
-        public int RouteId { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public RouteLength RouteLength { get; set; }
-        public TravelTimeToRoute TravelTimeToRoute { get; set; }
-        public string Country { get; set; } = String.Empty;
     }
 }

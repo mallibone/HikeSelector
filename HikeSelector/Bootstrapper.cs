@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using AutoMapper;
 using HikeSelector.Persistence;
+using HikeSelector.ViewModels;
 using Splat;
 using SQLite;
 

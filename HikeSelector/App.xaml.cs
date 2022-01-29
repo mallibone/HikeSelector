@@ -1,9 +1,8 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using HikeSelector.Views;
 
 namespace HikeSelector
 {
-    public partial class App : Application
+    public partial class App
     {
         public App()
         {
