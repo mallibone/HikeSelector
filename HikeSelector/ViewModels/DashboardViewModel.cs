@@ -12,15 +12,6 @@ using Splat;
 
 namespace HikeSelector.ViewModels
 {
-    public abstract class ViewModelBase: ReactiveObject, IActivatableViewModel
-    {
-        public ViewModelBase()
-        {
-            Activator = new ViewModelActivator();
-        }
-
-        public ViewModelActivator Activator { get; }
-    }
     public class DashboardViewModel : ViewModelBase
     {
         private readonly IMapper _mapper;

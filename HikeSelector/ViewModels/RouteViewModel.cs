@@ -10,10 +10,10 @@ namespace HikeSelector.ViewModels
 {
     public class RouteViewModel : ViewModelBase
     {
-        public RouteViewModel(int routeId = 0, Routes? routes = null, Mapper? mapper = null)
+        public RouteViewModel(int routeId = 0, Routes? routes = null, IMapper? mapper = null)
         {
             var routes1 = routes ?? Locator.Current.GetService<Routes>() ?? throw new ArgumentException(nameof(routes));
-            var mapper1 = mapper ?? Locator.Current.GetService<Mapper>() ?? throw new ArgumentException(nameof(mapper));
+            var mapper1 = mapper ?? Locator.Current.GetService<IMapper>() ?? throw new ArgumentException(nameof(mapper));
             
             this.WhenActivated(disposable =>
             {
