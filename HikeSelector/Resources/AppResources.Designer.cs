@@ -116,5 +116,23 @@ namespace HikeSelector.Resources {
                 return ResourceManager.GetString("RouteLength", resourceCulture);
             }
         }
+        
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        internal static string RouteEdit {
+            get {
+                return ResourceManager.GetString("RouteEdit", resourceCulture);
+            }
+        }
+        
+        internal static string RouteCreate {
+            get {
+                return ResourceManager.GetString("RouteCreate", resourceCulture);
+            }
+        }
     }
 }

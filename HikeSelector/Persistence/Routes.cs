@@ -62,6 +62,7 @@ namespace HikeSelector
 #endif
 
         public Task<List<RouteEntity>> Get() => _database.Table<RouteEntity>().ToListAsync();
+        public Task<RouteEntity> Get(int routeId) => _database.Table<RouteEntity>().FirstAsync(r => r.RouteId == routeId);
 
         public Task Add(RouteEntity routeEntity)
         {

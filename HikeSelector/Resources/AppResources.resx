@@ -54,4 +54,13 @@
     <data name="RouteLength" xml:space="preserve">
         <value>Routen Länge</value>
     </data>
+    <data name="Name" xml:space="preserve">
+        <value>Name</value>
+    </data>
+    <data name="RouteEdit" xml:space="preserve">
+        <value>Route Bearbeiten</value>
+    </data>
+    <data name="RouteCreate" xml:space="preserve">
+        <value>Route Erstellen</value>
+    </data>
 </root>
