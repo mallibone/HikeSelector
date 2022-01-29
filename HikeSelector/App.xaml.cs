@@ -1,4 +1,5 @@
 ﻿using HikeSelector.Views;
+using Xamarin.Forms;
 
 namespace HikeSelector
 {
@@ -10,7 +11,7 @@ namespace HikeSelector
             Bootstrapper.CreateMapper();
             Bootstrapper.RegisterServices();
 
-            MainPage = new DashboardPage();
+            MainPage = new NavigationPage(new DashboardPage());
         }
 
         protected override void OnStart()
