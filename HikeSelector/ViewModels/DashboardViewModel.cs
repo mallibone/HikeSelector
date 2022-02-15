@@ -8,22 +8,27 @@ using System.Windows.Input;
 using AutoMapper;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Sextant;
 using Splat;
 
 namespace HikeSelector.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {
+        private readonly IViewStackService? _viewStackService;
         private readonly IMapper _mapper;
         private readonly Routes _routes;
 
-        public DashboardViewModel(Routes? routes = null, IMapper? mapper = null)
+        public DashboardViewModel(Routes? routes = null, IMapper? mapper = null, IViewStackService? viewStackService = null)
         {
-            ExecuteRouteSuggestion = ReactiveCommand.CreateFromObservable(RouteSuggestion);
-            ExecuteAddHike = ReactiveCommand.CreateFromObservable(() => Observable.Return(Unit.Default));
-            
             _routes = routes ?? Locator.Current.GetService<Routes>() ?? throw new ArgumentNullException();
             _mapper = mapper ?? Locator.Current.GetService<IMapper>() ?? throw new ArgumentNullException();
+            _viewStackService = viewStackService 
+                                ?? Locator.Current.GetService<IViewStackService>() 
+                                ?? throw new ArgumentNullException();
+            
+            ExecuteRouteSuggestion = ReactiveCommand.CreateFromObservable(RouteSuggestion);
+            ExecuteAddHike = ReactiveCommand.CreateFromObservable(() => _viewStackService.PushPage<RouteViewModel>());
 
             this.WhenAnyValue( vm => vm.SuggestedRoute)
                 .Select(sr => sr.Name)
@@ -37,6 +42,7 @@ namespace HikeSelector.ViewModels
             });
         }
 
+        public override string Id { get; } = nameof(DashboardViewModel);
         public ICommand ExecuteRouteSuggestion { get; }
         [Reactive] public RouteViewModel SuggestedRoute { get; set; } = new() {Name = "Gnabber"};
         public string SuggestedRouteName { [ObservableAsProperty] get; } = string.Empty;

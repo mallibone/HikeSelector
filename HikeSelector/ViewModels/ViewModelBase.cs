@@ -1,8 +1,9 @@
 using ReactiveUI;
+using Sextant;
 
 namespace HikeSelector.ViewModels
 {
-    public abstract class ViewModelBase: ReactiveObject, IActivatableViewModel
+    public abstract class ViewModelBase: ReactiveObject, IActivatableViewModel, IViewModel
     {
         public ViewModelBase()
         {
@@ -10,5 +11,6 @@ namespace HikeSelector.ViewModels
         }
 
         public ViewModelActivator Activator { get; }
+        public virtual string Id { get; } = nameof(ViewModelBase);
     }
 }

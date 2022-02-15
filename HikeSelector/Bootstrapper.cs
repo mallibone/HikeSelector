@@ -3,6 +3,10 @@ using System.IO;
 using AutoMapper;
 using HikeSelector.Persistence;
 using HikeSelector.ViewModels;
+using HikeSelector.Views;
+using ReactiveUI;
+using Sextant;
+using Sextant.XamForms;
 using Splat;
 using SQLite;
 
@@ -39,6 +43,16 @@ namespace HikeSelector
             Locator.CurrentMutable.Register(() => new SQLiteAsyncConnection(DbPath));
             
             Locator.CurrentMutable.Register(() => new DashboardViewModel());
+        }
+
+        public static void RegisterNavigation()
+        {
+            Locator
+                .CurrentMutable
+                .RegisterNavigationView(() => new NavigationView(RxApp.MainThreadScheduler, RxApp.TaskpoolScheduler, ViewLocator.Current))
+                .RegisterParameterViewStackService()
+                .RegisterViewForNavigation(() => new DashboardPage(), () => new DashboardViewModel())
+                .RegisterViewForNavigation(() => new EditRoutePage(), () => new RouteViewModel());
         }
     }
 }

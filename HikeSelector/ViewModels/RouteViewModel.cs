@@ -26,6 +26,8 @@ namespace HikeSelector.ViewModels
                 }
             });
         }
+
+        public override string Id { get; } = nameof(RouteViewModel);
         public int RouteId { get; set; }
         public string Name { get; set; } = string.Empty;
         public RouteLength RouteLength { get; set; }

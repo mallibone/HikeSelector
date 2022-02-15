@@ -1,4 +1,9 @@
-﻿using HikeSelector.Views;
+﻿using System;
+using HikeSelector.ViewModels;
+using HikeSelector.Views;
+using Sextant;
+using Sextant.XamForms;
+using Splat;
 using Xamarin.Forms;
 
 namespace HikeSelector
@@ -10,8 +15,17 @@ namespace HikeSelector
             InitializeComponent();
             Bootstrapper.CreateMapper();
             Bootstrapper.RegisterServices();
+            Bootstrapper.RegisterNavigation();
+            
+            Locator
+                .Current
+                .GetService<IParameterViewStackService>()!
+                .PushPage<DashboardViewModel>()
+                .Subscribe();
 
-            MainPage = new NavigationPage(new DashboardPage());
+            MainPage = Locator.Current.GetNavigationView("NavigationView");
+
+            // MainPage = new NavigationPage(new DashboardPage());
         }
 
         protected override void OnStart()

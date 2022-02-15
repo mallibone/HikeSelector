@@ -29,7 +29,6 @@ namespace HikeSelector.Views
                 // Icon = "add.png",
                 Command = ViewModel?.ExecuteAddHike
             });
-            
         }
 
         private void Build() => Content = new Grid
